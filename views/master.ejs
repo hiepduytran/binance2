@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="http://localhost:3000" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Binance API</title>
+    <link rel="stylesheet" href="./layout.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="./socket.io/socket.io.js"></script>
+    <script>
+        var socket = io("http://localhost:3000");
+        socket.on("server-send-usdt", function (data) {
+            console.log(data);
+            $("h2.usdt").html(data);
+        });
+        socket.on("server-send-btc", function (data) {
+            console.log(data);
+            $("h2.btc").html(data);
+        });
+        socket.on("server-send-total", function (data) {
+            console.log(data);
+            $("h2.total").html(data);
+        });
+        $(document).ready(function () {
+            $("#on").click(function(){
+                var amount = parseFloat($("#amount").val())
+                $.get("./on/"+amount, function(data) {
+                    alert("Bot is Running.")
+                    console.log(data);
+                });
+            });
+            $("#off").click(function(){
+                $.get("./off", function(data) {
+                    alert("Bot is Ended.")  
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container-text">
+        BINANCE TRADING
+    </div>
+    <div id="contain">
+        <div id="left">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div id="tradingview_8f57a"></div>
+                <div class="tradingview-widget-copyright"><a
+                        href="https://vn.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener"
+                        target="_blank"><span class="blue-text">BTCUSDT biểu đồ</span> </a> từ TradingView</div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget(
+                        {
+                            "width": 900,
+                            "height": 610,
+                            "symbol": "BINANCE:BTCUSDT",
+                            "interval": "60",
+                            "timezone": "Asia/Ho_Chi_Minh",
+                            "theme": "light",
+                            "style": "1",
+                            "locale": "vi_VN",
+                            "toolbar_bg": "#f1f3f6",
+                            "enable_publishing": false,
+                            "withdateranges": true,
+                            "allow_symbol_change": true,
+                            "container_id": "tradingview_8f57a"
+                        }
+                    );
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
+        </div>
+        <div id="right">
+            <h1 style="font-size: 25px;">
+                BTC
+                <ion-icon name="logo-bitcoin" style="color: rgb(14, 203, 129);"></ion-icon>
+            </h1>
+            <h2 class="btc" style="font-size: 30px; color: brown;"></h2>
+
+            <h1 style="font-size: 25px;">
+                USDT
+                <ion-icon name="logo-usd" style="color: rgb(14, 203, 129);"></ion-icon on-icon>
+            </h1>
+            <h2 class="usdt" style="font-size: 30px; color: brown;"></h2>
+
+            <h1 style="font-size: 25px;">
+                TOTAL
+                <ion-icon name="logo-dropbox" style="color: rgb(14, 203, 129);"></ion-icon>
+            </h1>
+            <h2 class="total" style="font-size: 30px; color: brown;"></h2>
+
+            <h1>TRADING BOT
+                <ion-icon name="logo-octocat" style="color: rgb(14, 203, 129);"></ion-icon>
+            </h1>
+            <label for="amount" style="font-size: 30px">Amount: </label>
+            <input type="text" id="amount" name="amount" value="0.01" placeholder="0.01" style="margin-bottom: 25px ;padding: 15px; border: 2px; font-size: 30px; color: brown; border-radius: 10px;">
+            <br>
+            <button class="button" id="on" onclick="changeColor(1)"><span>On </span></button>
+            <button class="button" id="off" onclick="changeColor(-1)" style="margin-left: 40px;"><span>Off </span></button>
+        </div>  
+    </div>
+    <script>
+        function changeColor(str) {
+            var onBtn = document.getElementById("on");
+            var offBtn = document.getElementById("off");
+            if(str==1){
+                offBtn.classList.remove("greenColor");
+                onBtn.classList.toggle("greenColor");
+            }else {
+                offBtn.classList.toggle("greenColor");
+                onBtn.classList.remove("greenColor");
+            }
+        }
+    </script>
+    
+    
+</body>
+
+</html>
+

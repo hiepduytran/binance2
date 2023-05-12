@@ -1,0 +1,90 @@
+body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    background-image: url(https://wallpaperaccess.com/full/5851940.png);
+    color: rgb(240, 185, 11);
+}
+
+#left {
+    width: 60%;
+    float: left;
+    min-height: 500px;
+}
+
+#right{
+    width: 577px;
+    float: right;
+    height: 577px;
+    background-color:whitesmoke;
+}
+
+@keyframes filling {
+    from{
+      background-position: center 70%;
+    }
+    to {
+      background-position: center 30%;
+    }
+  }
+  
+  .container-text {
+    background-image:  url(https://image.vtcnews.vn/resize/th/upload/2023/02/12/gia-bitcoin-13-2-vtc-news-15094562.jpeg);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color:  #FFFFFF;
+    font-size: 50px;
+    animation: filling 3s ease forwards;
+    font-weight: 600;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    display: block;
+    margin: 30px;
+  }
+
+.button {
+    border-radius: 4px;
+    background-color: red;
+    border: none;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+.button:hover span {
+    padding-right: 25px;
+    cursor: pointer;
+  }
+  
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+.greenColor {
+  background-color: green;
+  color: white;
+}
+
